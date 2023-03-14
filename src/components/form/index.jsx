@@ -83,15 +83,15 @@ const TaskForm = ({ open = false, addNewTask }) => {
           <form className="form__container" onSubmit={handleSubmit}>
             <div className="form__field">
               <label>Title</label>
-              <input name="heading" value={newTask?.heading} onChange={handleChange} />
+              <input aria-label="heading" name="heading" value={newTask?.heading} onChange={handleChange} />
             </div>
             <div className="form__field">
               <label>Description</label>
-              <input name="desc" value={newTask?.desc} onChange={handleChange} />
+              <input aria-label="desc" name="desc" value={newTask?.desc} onChange={handleChange} />
             </div>
             <div className="form__field">
               <label>Deadline</label>
-              <input name="deadline" value={newTask?.deadline} onChange={handleChange} />
+              <input aria-label="deadline" name="deadline" value={newTask?.deadline} onChange={handleChange} />
             </div>
 
             <Button color="secondary" type="submit" variant="outlined">
