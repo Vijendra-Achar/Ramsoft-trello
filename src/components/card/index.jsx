@@ -30,7 +30,7 @@ const TaskCard = ({ heading, desc, deadline, status, id, onStatusChange, index }
       <div className="card__heading">{heading}</div>
       <div className="card__desc">{desc}</div>
       <div className="card__deadline">{deadline}</div>
-      <div>
+      <div className="card__status">
         Status :
         <select value={statusValue} onChange={handleChange}>
           {statusOptions?.map((option) => (
