@@ -9,10 +9,29 @@ describe("The form's elements", () => {
     expect(headingElement).toBeTruthy();
   });
 
-  it("The Input fields are rendered as expected", () => {
-    const titleBox = screen.findByRole("text", {
-      name: "heading",
+  describe("Check for form field renders", () => {
+    it("The Input fields are rendered as expected - heading", async () => {
+      render(<Form open={true} />);
+      const titleBox = screen.getByRole("textbox", {
+        name: "heading",
+      });
+      expect(titleBox).toBeInTheDocument();
     });
-    expect(titleBox).toBeTruthy();
+
+    it("The Input fields are rendered as expected - description", async () => {
+      render(<Form open={true} />);
+      const descBox = screen.getByRole("textbox", {
+        name: "desc",
+      });
+      expect(descBox).toBeInTheDocument();
+    });
+
+    it("The Input fields are rendered as expected - deadline", async () => {
+      render(<Form open={true} />);
+      const deadlineBox = screen.getByRole("textbox", {
+        name: "deadline",
+      });
+      expect(deadlineBox).toBeInTheDocument();
+    });
   });
 });
