@@ -48,24 +48,40 @@ export default function App() {
     setOpenAddNewTask(false);
   };
 
-  const handleOnStatusChange = (taskId, value, prevValue) => {
+  const handleOnStatusChange = (taskId, value, prevValue, index) => {
     const updatedBoard = [...board];
 
+    let taskCard;
+
+    // Find the task card
     updatedBoard?.forEach((section) => {
-      if (section?.id === "todo" && value === "todo") {
-        const taskIndex = section?.cards?.findIndex((item) => item?.id === taskId);
-        const task = section?.cards[taskIndex];
-        section?.cards?.push(task);
-      } else if (section?.id === "progress" && value === "progress") {
-        const taskIndex = section?.cards?.findIndex((item) => item?.id === taskId);
-        const task = section?.cards[taskIndex];
-        section?.cards?.push(task);
-      } else if (section?.id === "done" && value === "done") {
-        const taskIndex = section?.cards?.findIndex((item) => item?.id === taskId);
-        const task = section?.cards[taskIndex];
-        section?.cards?.push(task);
+      const taskCardTemp = section?.cards?.find((item) => item?.id === taskId);
+      if (taskCardTemp) {
+        taskCardTemp.status = value;
+        taskCard = taskCardTemp;
       }
     });
+
+    // Remove the task card from the previous array
+    updatedBoard?.forEach((section) => {
+      if (section?.id === prevValue) {
+        section?.cards?.splice(index, 1);
+      }
+    });
+
+    // Add it to the new section
+    updatedBoard?.forEach((section) => {
+      if (section?.id === "todo" && value === "todo") {
+        section?.cards?.push({ ...taskCard });
+      } else if (section?.id === "progress" && value === "progress") {
+        section?.cards?.push({ ...taskCard });
+      } else if (section?.id === "done" && value === "done") {
+        section?.cards?.push({ ...taskCard });
+      }
+    });
+
+    console.log("the card ", taskCard, index);
+    console.log("the card 2", updatedBoard);
 
     setBoard(updatedBoard);
     setOpenAddNewTask(false);
@@ -84,6 +100,7 @@ export default function App() {
               {section?.cards?.map((task, index) => (
                 <Card
                   key={index}
+                  index={index}
                   heading={task?.heading}
                   desc={task?.desc}
                   deadline={task?.deadline}

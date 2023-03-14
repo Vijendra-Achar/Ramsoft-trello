@@ -17,12 +17,12 @@ const statusOptions = [
   },
 ];
 
-const TaskCard = ({ heading, desc, deadline, status, id, onStatusChange }) => {
+const TaskCard = ({ heading, desc, deadline, status, id, onStatusChange, index }) => {
   const [statusValue, setStatusValue] = useState(status);
 
   const handleChange = (event) => {
     setStatusValue(event.target.value);
-    onStatusChange(id, event.target.value, status);
+    onStatusChange(id, event.target.value, status, index);
   };
 
   return (
