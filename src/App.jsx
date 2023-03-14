@@ -80,9 +80,6 @@ export default function App() {
       }
     });
 
-    console.log("the card ", taskCard, index);
-    console.log("the card 2", updatedBoard);
-
     setBoard(updatedBoard);
     setOpenAddNewTask(false);
   };
