@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import Card from "./components/card";
 import Form from "./components/form";
-
+import { Button } from "@mui/material";
 import "./styles.scss";
 
 export default function App() {
@@ -101,7 +101,11 @@ export default function App() {
                   onStatusChange={handleOnStatusChange}
                 />
               ))}
-              {section?.addButton && <button onClick={() => setOpenAddNewTask(true)}>Add Card</button>}
+              {section?.addButton && (
+                <Button variant="contained" onClick={() => setOpenAddNewTask(true)}>
+                  Add Card
+                </Button>
+              )}
             </div>
           );
         })}
