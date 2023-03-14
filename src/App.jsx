@@ -71,11 +71,7 @@ export default function App() {
 
     // Add it to the new section
     updatedBoard?.forEach((section) => {
-      if (section?.id === "todo" && value === "todo") {
-        section?.cards?.push({ ...taskCard });
-      } else if (section?.id === "progress" && value === "progress") {
-        section?.cards?.push({ ...taskCard });
-      } else if (section?.id === "done" && value === "done") {
+      if (section?.id === value) {
         section?.cards?.push({ ...taskCard });
       }
     });
@@ -113,7 +109,7 @@ export default function App() {
       </div>
 
       {/* Popup for new task */}
-      <Form open={openAddNewTask} addNewTask={addNewTask} />
+      {openAddNewTask && <Form open={openAddNewTask} addNewTask={addNewTask} />}
     </div>
   );
 }
