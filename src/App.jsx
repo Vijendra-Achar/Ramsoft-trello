@@ -62,15 +62,13 @@ export default function App() {
       }
     });
 
-    // Remove the task card from the previous array
     updatedBoard?.forEach((section) => {
+      // Remove the task card from the previous array
       if (section?.id === prevValue) {
         section?.cards?.splice(index, 1);
       }
-    });
 
-    // Add it to the new section
-    updatedBoard?.forEach((section) => {
+      // Add it to the new section
       if (section?.id === value) {
         section?.cards?.push({ ...taskCard });
       }
