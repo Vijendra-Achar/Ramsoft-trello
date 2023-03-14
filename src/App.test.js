@@ -1,8 +1,10 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import { render, screen } from "@testing-library/react";
+import App from "./App";
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+describe("Test the Main App", () => {
+  it("Renders main heading", () => {
+    render(<App />);
+    const header = screen.getByTestId("header").innerHTML;
+    expect(header).toEqual("Ramsoft's Trello");
+  });
 });

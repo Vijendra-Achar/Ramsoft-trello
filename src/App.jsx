@@ -73,7 +73,9 @@ export default function App() {
 
   return (
     <div>
-      <header className="header">Ramsoft's Trello</header>
+      <header data-testid="header" className="header">
+        Ramsoft's Trello
+      </header>
       <div className="board">
         {board.map((section) => {
           return (
