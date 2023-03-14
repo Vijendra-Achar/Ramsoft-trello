@@ -74,6 +74,7 @@ export default function App() {
       }
     });
 
+    localStorage.setItem("data", JSON.stringify(updatedBoard));
     setBoard(updatedBoard);
     setOpenAddNewTask(false);
   };
@@ -90,7 +91,7 @@ export default function App() {
               <div className="heading">{section.name}</div>
               {section?.cards?.map((task, index) => (
                 <Card
-                  key={index}
+                  key={task?.id}
                   index={index}
                   heading={task?.heading}
                   desc={task?.desc}
