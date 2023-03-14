@@ -1,0 +1,41 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.header  {
+  font-size: 2em;
+  margin: 25px 10px;
+  font-weight: 600;
+}
+
+.board {
+  margin: 10px;
+  display: flex;
+  border: 1px solid black;
+  border-radius: 8px;
+
+  &__section {
+    width: calc(100vw / 3);
+    height: 500px;
+    text-align: center;
+    overflow-y: scroll;
+
+    &:not(:last-child) {
+      border-right: 1px solid black;
+    }
+  }
+
+
+  .heading {
+    padding: 10px 0;
+    border-bottom: 1px solid black;
+    text-align: center;
+
+    font-size: 1.2em;
+    font-weight: 600;
+  }
+}
+
+
