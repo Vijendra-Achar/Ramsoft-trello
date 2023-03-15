@@ -1,23 +1,27 @@
 .form {
-    &__header {
-        font-size: 1.4em;
-        font-weight: 600;
-        margin: 10px 0;
+  &__header {
+    font-size: 1.4em;
+    font-weight: 600;
+    margin: 10px 0;
+  }
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+
+    label {
+      margin: 5px 0;
     }
 
-    &__field {
-        display: flex;
-        flex-direction: column;
-        margin: 10px 0;
-
-        label {
-            margin: 5px 0;
-        }
-
-        input {
-            padding: 10px 8px;
-            border-radius: 6px;
-            border: 1px solid #808080;
-        }
+    input {
+      padding: 10px 8px;
+      border-radius: 6px;
+      border: 1px solid #808080;
     }
+  }
+}
+
+.cancel-button {
+  margin-left: 10px !important;
 }

@@ -91,6 +91,10 @@ export default function App() {
     event.preventDefault();
   };
 
+  const handleCancel = () => {
+    setOpenAddNewTask(false);
+  };
+
   return (
     <div>
       <header data-testid="header" className="header">
@@ -132,7 +136,7 @@ export default function App() {
       </div>
 
       {/* Popup for new task */}
-      {openAddNewTask && <Form open={openAddNewTask} addNewTask={addNewTask} />}
+      {openAddNewTask && <Form open={openAddNewTask} addNewTask={addNewTask} handleCancel={handleCancel} />}
     </div>
   );
 }

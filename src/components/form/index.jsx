@@ -17,7 +17,7 @@ const style = {
   pb: 3,
 };
 
-const TaskForm = ({ open = false, addNewTask }) => {
+const TaskForm = ({ open = false, addNewTask, handleCancel }) => {
   const [newTask, setNewTask] = useState({
     heading: "",
     desc: "",
@@ -96,6 +96,10 @@ const TaskForm = ({ open = false, addNewTask }) => {
 
             <Button color="secondary" type="submit" variant="outlined">
               Submit
+            </Button>
+
+            <Button className="cancel-button" type="button" variant="text" onClick={handleCancel}>
+              Cancel
             </Button>
           </form>
         </Box>
