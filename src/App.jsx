@@ -99,32 +99,32 @@ export default function App() {
       <div className="board">
         {board.map((section) => {
           return (
-            <div
-              id={section?.id}
-              onDrop={handleOnDrop}
-              onDragOver={handleOnDragOver}
-              className="board__section"
-              key={section.id}
-            >
+            <div onDrop={handleOnDrop} className="board__section" key={section.id}>
               <div className="heading">{section.name}</div>
-              {section?.cards?.map((task, index) => (
-                <div key={task?.id} draggable onDragStart={(event) => handleOnDragStart(event, task, index)}>
-                  <Card
-                    key={task?.id}
-                    index={index}
-                    heading={task?.heading}
-                    desc={task?.desc}
-                    deadline={task?.deadline}
-                    status={task?.status}
-                    id={task?.id}
-                    onStatusChange={handleOnStatusChange}
-                  />
-                </div>
-              ))}
+              {/* Tasks container */}
+              <div id={section?.id} onDragOver={handleOnDragOver} className="tasks-container">
+                {section?.cards?.map((task, index) => (
+                  <div key={task?.id} draggable onDragStart={(event) => handleOnDragStart(event, task, index)}>
+                    <Card
+                      key={task?.id}
+                      index={index}
+                      heading={task?.heading}
+                      desc={task?.desc}
+                      deadline={task?.deadline}
+                      status={task?.status}
+                      id={task?.id}
+                      onStatusChange={handleOnStatusChange}
+                    />
+                  </div>
+                ))}
+              </div>
+              {/* The Add button and it's container */}
               {section?.addButton && (
-                <Button variant="contained" onClick={() => setOpenAddNewTask(true)}>
-                  Add Card
-                </Button>
+                <div className="button-container">
+                  <Button className="add-button" variant="contained" onClick={() => setOpenAddNewTask(true)}>
+                    Add Card
+                  </Button>
+                </div>
               )}
             </div>
           );

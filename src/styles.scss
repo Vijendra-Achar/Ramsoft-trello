@@ -28,6 +28,14 @@
     }
   }
 
+  .button-container {
+    border-radius: 0 0 0 8px;
+    height: 55px;
+    .add-button {
+      margin: 0 0 15px 0;
+    }
+  }
+
   .heading {
     padding: 10px 0;
     border-bottom: 1px solid black;
@@ -44,16 +52,6 @@
   .tasks-container {
     overflow-y: scroll;
     height: 400px;
+    cursor: pointer;
   }
 }
-
-// .button-container {
-// he
-// align-items: center;
-// width: calc((100vw / 3) - 10px);
-// background-color: #fff;
-// height: 50px;
-// margin-top: -50px;
-// z-index: 11;
-// position: fixed;
-// }
