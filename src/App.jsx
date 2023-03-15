@@ -53,30 +53,42 @@ export default function App() {
 
     let taskCard;
 
-    // Find the task card
+    // Delete the previous
     updatedBoard?.forEach((section) => {
-      const taskCardTemp = section?.cards?.find((item) => item?.id === taskId);
-      if (taskCardTemp) {
-        taskCardTemp.status = value;
-        taskCard = taskCardTemp;
+      if (section?.id === prevValue) {
+        taskCard = section?.cards?.find((item) => item?.id == taskId);
+        section?.cards?.splice(parseInt(index), 1);
       }
     });
 
+    // Add it to the new section
     updatedBoard?.forEach((section) => {
-      // Remove the task card from the previous array
-      if (section?.id === prevValue) {
-        section?.cards?.splice(index, 1);
-      }
-
-      // Add it to the new section
       if (section?.id === value) {
-        section?.cards?.push({ ...taskCard });
+        section?.cards?.push({ ...taskCard, status: value });
       }
     });
 
     localStorage.setItem("data", JSON.stringify(updatedBoard));
     setBoard(updatedBoard);
     setOpenAddNewTask(false);
+  };
+
+  const handleOnDragStart = (event, task, index) => {
+    event.dataTransfer.setData("task", task?.id);
+    event.dataTransfer.setData("prevValue", event?.target?.parentElement?.id);
+    event.dataTransfer.setData("index", index);
+  };
+
+  const handleOnDrop = (event) => {
+    const taskId = event.dataTransfer.getData("task");
+    const value = event?.target?.id;
+    const prevValue = event.dataTransfer.getData("prevValue");
+    const index = event.dataTransfer.getData("index");
+    handleOnStatusChange(taskId, value, prevValue, index);
+  };
+
+  const handleOnDragOver = (event) => {
+    event.preventDefault();
   };
 
   return (
@@ -87,10 +99,16 @@ export default function App() {
       <div className="board">
         {board.map((section) => {
           return (
-            <div className="board__section" key={section.id}>
+            <div
+              id={section?.id}
+              onDrop={handleOnDrop}
+              onDragOver={handleOnDragOver}
+              className="board__section"
+              key={section.id}
+            >
               <div className="heading">{section.name}</div>
-              <div className="tasks-container">
-                {section?.cards?.map((task, index) => (
+              {section?.cards?.map((task, index) => (
+                <div key={task?.id} draggable onDragStart={(event) => handleOnDragStart(event, task, index)}>
                   <Card
                     key={task?.id}
                     index={index}
@@ -101,15 +119,13 @@ export default function App() {
                     id={task?.id}
                     onStatusChange={handleOnStatusChange}
                   />
-                ))}
-              </div>
-              <div className="button-container">
-                {section?.addButton && (
-                  <Button variant="contained" onClick={() => setOpenAddNewTask(true)}>
-                    Add Card
-                  </Button>
-                )}
-              </div>
+                </div>
+              ))}
+              {section?.addButton && (
+                <Button variant="contained" onClick={() => setOpenAddNewTask(true)}>
+                  Add Card
+                </Button>
+              )}
             </div>
           );
         })}
