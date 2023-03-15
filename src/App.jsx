@@ -53,6 +53,7 @@ export default function App() {
 
     let taskCard;
 
+    // Delete the previous
     updatedBoard?.forEach((section) => {
       if (section?.id === prevValue) {
         taskCard = section?.cards?.find((item) => item?.id == taskId);
@@ -60,15 +61,12 @@ export default function App() {
       }
     });
 
+    // Add it to the new section
     updatedBoard?.forEach((section) => {
-      // Add it to the new section
       if (section?.id === value) {
-        section?.cards?.push({ ...taskCard });
+        section?.cards?.push({ ...taskCard, status: value });
       }
     });
-
-    console.log("taskCard", taskCard);
-    console.log("taskCard 2", taskId, value, prevValue, index);
 
     localStorage.setItem("data", JSON.stringify(updatedBoard));
     setBoard(updatedBoard);
