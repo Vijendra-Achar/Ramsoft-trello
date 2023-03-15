@@ -4,7 +4,7 @@
   padding: 0;
 }
 
-.header  {
+.header {
   font-size: 2em;
   margin: 25px 10px;
   font-weight: 600;
@@ -20,22 +20,40 @@
     width: calc(100vw / 3);
     height: 500px;
     text-align: center;
-    overflow-y: scroll;
+
+    position: relative;
 
     &:not(:last-child) {
       border-right: 1px solid black;
     }
   }
 
-
   .heading {
     padding: 10px 0;
     border-bottom: 1px solid black;
+
     text-align: center;
 
+    z-index: 10;
+    background-color: #fff;
+    border-radius: 8px 8px 0 0;
     font-size: 1.2em;
     font-weight: 600;
   }
+
+  .tasks-container {
+    overflow-y: scroll;
+    height: 400px;
+  }
 }
 
-
+// .button-container {
+// he
+// align-items: center;
+// width: calc((100vw / 3) - 10px);
+// background-color: #fff;
+// height: 50px;
+// margin-top: -50px;
+// z-index: 11;
+// position: fixed;
+// }

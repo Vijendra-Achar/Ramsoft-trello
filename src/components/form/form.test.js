@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import Form from "./index";
 
 describe("The form's elements", () => {
@@ -32,6 +32,22 @@ describe("The form's elements", () => {
         name: "deadline",
       });
       expect(deadlineBox).toBeInTheDocument();
+    });
+  });
+
+  describe("Check if the textbox is being populated", () => {
+    it("Check for Heading change", async () => {
+      render(<Form open={true} />);
+
+      const headingBox = screen.getByRole("textbox", { name: "heading" });
+
+      expect(headingBox).toBeInTheDocument();
+
+      fireEvent.change(headingBox, { target: { value: "test heading" } });
+
+      const headingBoxChanged = screen.getByRole("textbox", { name: "heading" });
+
+      expect(headingBoxChanged.value).toBe("test heading");
     });
   });
 });

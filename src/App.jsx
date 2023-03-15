@@ -89,23 +89,27 @@ export default function App() {
           return (
             <div className="board__section" key={section.id}>
               <div className="heading">{section.name}</div>
-              {section?.cards?.map((task, index) => (
-                <Card
-                  key={task?.id}
-                  index={index}
-                  heading={task?.heading}
-                  desc={task?.desc}
-                  deadline={task?.deadline}
-                  status={task?.status}
-                  id={task?.id}
-                  onStatusChange={handleOnStatusChange}
-                />
-              ))}
-              {section?.addButton && (
-                <Button variant="contained" onClick={() => setOpenAddNewTask(true)}>
-                  Add Card
-                </Button>
-              )}
+              <div className="tasks-container">
+                {section?.cards?.map((task, index) => (
+                  <Card
+                    key={task?.id}
+                    index={index}
+                    heading={task?.heading}
+                    desc={task?.desc}
+                    deadline={task?.deadline}
+                    status={task?.status}
+                    id={task?.id}
+                    onStatusChange={handleOnStatusChange}
+                  />
+                ))}
+              </div>
+              <div className="button-container">
+                {section?.addButton && (
+                  <Button variant="contained" onClick={() => setOpenAddNewTask(true)}>
+                    Add Card
+                  </Button>
+                )}
+              </div>
             </div>
           );
         })}
